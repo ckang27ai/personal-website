@@ -18,7 +18,8 @@ function ProjectsIndex() {
       <Eyebrow>Projects</Eyebrow>
       <h1 className="mt-2 text-3xl font-bold text-foreground">Selected Work</h1>
       <p className="mt-2 max-w-lg text-sm text-muted-foreground">
-        A few things I've been building.
+        Climate, operations, and the occasional side project built to settle an argument with
+        myself.
       </p>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2">

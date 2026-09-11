@@ -25,18 +25,18 @@ type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "ai-study-assistant",
-    title: "Sample Project: AI Study Assistant",
+    slug: "gridpath",
+    title: "GridPath: Fleet Electrification Planner",
     blurb:
-      "A web app that turns lecture notes into flashcards and practice quizzes. Replace this with a one-sentence summary of your project.",
-    tags: ["AI", "Education", "Web App"],
+      "A planning tool that models the cost, timeline, and grid constraints of converting a mid-size delivery fleet to electric vehicles.",
+    tags: ["Climate Tech", "Product", "Analytics"],
     sections: [
       {
         title: "Overview",
         blocks: [
           {
             type: "paragraph",
-            text: "Describe what you built in two or three sentences. What does it do, and who is it for? This sample shows every kind of block a project page supports, so copy it and replace the text with your own.",
+            text: "GridPath takes a fleet's existing routes, depot locations, and duty cycles, and returns a year-by-year electrification plan: which vehicles to convert first, how many chargers each depot needs, what the utility interconnection will cost, and when the whole thing turns cash-flow positive. I built it as my project for Climate & Energy Ventures and have since handed it to two fleet operators to pilot.",
           },
         ],
       },
@@ -45,7 +45,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Explain the problem or moment that sparked the project. A short personal story makes a project memorable, like a frustration you had or a conversation with someone who had the problem.",
+            text: "At Northwind I sat through a dozen meetings about electrifying our last-mile vans. Every one of them stalled at the same place: nobody could say what it would actually cost, because the answer depended on depot power capacity, and getting that number meant a six-week study from the utility. Fleets were making million-dollar decisions on the basis of a vendor's spreadsheet. I wanted to see whether a decent first-pass answer could be produced in an afternoon instead.",
           },
         ],
       },
@@ -54,26 +54,35 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Walk through how it works. Lists with bold labels are a good way to break down the main parts:",
+            text: "The tool is deliberately opinionated: it prefers a defensible estimate now over a precise one in six weeks.",
           },
           {
             type: "list",
             items: [
               {
-                label: "Note upload:",
-                detail: "Students upload lecture notes as PDFs or paste in text.",
+                label: "Route ingestion:",
+                detail:
+                  "Operators upload telematics exports; the model derives daily mileage distributions and dwell windows per vehicle.",
               },
               {
-                label: "Flashcard generation:",
-                detail: "An LLM extracts key concepts and writes question-and-answer cards.",
+                label: "Feasibility screen:",
+                detail:
+                  "Each vehicle is matched against a catalog of available electric models, filtering on range headroom under winter derating.",
               },
               {
-                label: "Practice quizzes:",
-                detail: "Cards are mixed into timed quizzes that focus on the ones you miss.",
+                label: "Charging design:",
+                detail:
+                  "A scheduling solver packs charging into depot dwell time, minimizing peak demand rather than charger count, because demand charges dominate the operating bill.",
               },
               {
-                label: "Tech Stack:",
-                detail: "React, TypeScript, Python, an LLM API, Vercel",
+                label: "Financial model:",
+                detail:
+                  "Fifteen-year TCO with incentive stacking, residual value, and a sensitivity sweep over electricity and diesel prices.",
+              },
+              {
+                label: "Tech stack:",
+                detail:
+                  "Python, pandas, Pyomo for the scheduling solve, Streamlit, and PostgreSQL.",
               },
             ],
           },
@@ -86,7 +95,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Share results and what you learned: how many people used it, feedback you got, metrics, or what you'd do differently next time.",
+            text: "Two regional fleets ran their real route data through it. For one, GridPath found that staging the conversion depot-by-depot instead of all at once avoided a $600K service upgrade and pulled breakeven forward by roughly two years. The bigger lesson was less flattering: my first version optimized for the lowest charger count, which is exactly the wrong objective once demand charges are priced in. Talking to an actual facilities manager corrected in ten minutes what I had reasoned my way into over three weeks.",
           },
         ],
       },
@@ -96,24 +105,25 @@ export const projects: Project[] = [
           {
             type: "link",
             label: "View on GitHub",
-            href: "https://github.com/your-username/your-project",
+            href: "https://github.com/priyavenkatesan/gridpath",
           },
         ],
       },
     ],
   },
   {
-    slug: "campus-events-map",
-    title: "Sample Project: Campus Events Map",
-    blurb: "A map of what's happening on campus this week, built with a student club.",
-    tags: ["Mobile", "Community"],
+    slug: "food-rescue-routing",
+    title: "Route Optimization for a Food Rescue Nonprofit",
+    blurb:
+      "A volunteer-friendly routing system that helped a Cambridge food rescue move 40% more donations per driver-hour.",
+    tags: ["Operations", "Social Impact", "Python"],
     sections: [
       {
         title: "Overview",
         blocks: [
           {
             type: "paragraph",
-            text: "A second sample project. Projects appear on the Projects page in the order they're listed in src/lib/projects.ts.",
+            text: "A Cambridge nonprofit collects surplus food from grocers and restaurants and delivers it to shelters the same evening. Routes were assigned by hand each afternoon by one very patient coordinator working from memory. I built a routing tool that produces the daily assignments in about a minute, and — more importantly — that a rotating cast of volunteers can actually operate.",
           },
         ],
       },
@@ -122,7 +132,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Campus events were scattered across emails, flyers, and group chats, so students missed things they would have enjoyed.",
+            text: "The hard constraint was not distance. It was that donation volumes are unknown until pickup, drivers are volunteers with narrow availability windows, and perishable loads have a hard drop-off deadline. A textbook vehicle routing solution assumes none of that.",
           },
         ],
       },
@@ -132,8 +142,30 @@ export const projects: Project[] = [
           {
             type: "list",
             items: [
-              { detail: "List items don't need a bold label." },
-              { detail: "Use whichever style reads best for your project." },
+              {
+                label: "Capacity as a distribution:",
+                detail:
+                  "Pickup sizes are modeled from historical variance rather than point estimates, so routes stay feasible when a grocer donates twice what was expected.",
+              },
+              {
+                label: "Volunteer-first constraints:",
+                detail:
+                  "Availability windows and vehicle size are hard constraints; total distance is only the tiebreaker.",
+              },
+              {
+                label: "Graceful degradation:",
+                detail:
+                  "If the solver cannot fit every pickup, it drops the lowest-perishability stops and flags them, instead of failing.",
+              },
+              {
+                detail:
+                  "The output is a printed sheet and a text message, not a dashboard. Volunteers were never going to log into anything.",
+              },
+              {
+                label: "Tech stack:",
+                detail:
+                  "Python, OR-Tools, OpenRouteService, Twilio, and a Google Sheet as the admin interface.",
+              },
             ],
           },
         ],
@@ -143,7 +175,78 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Delete these sample projects once you've added your own.",
+            text: "Donations moved per driver-hour rose about 40% over the first three months, and the coordinator got roughly six hours a week back. I still volunteer as their route planner, which mostly means I am the one who gets called when the solver produces something absurd.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "bid-signal",
+    title: "Bid Signal: Course Bidding Analytics",
+    blurb:
+      "A small side project that predicts MIT Sloan course clearing prices, built after I badly overbid in my first semester.",
+    tags: ["Analytics", "Side Project"],
+    sections: [
+      {
+        title: "Overview",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Sloan allocates seats in oversubscribed classes through a bidding system. Bid Signal scrapes the published clearing prices from past semesters and estimates what a given class is likely to clear at, with an interval rather than a single number.",
+          },
+        ],
+      },
+      {
+        title: "Why I Built This",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "I spent an embarrassing share of my first-semester points on a class that would have cleared for a fraction of what I bid. This was cheaper than therapy.",
+          },
+        ],
+      },
+      {
+        title: "Approach",
+        blocks: [
+          {
+            type: "list",
+            items: [
+              {
+                label: "Data:",
+                detail:
+                  "Eight semesters of published clearing prices, joined to enrollment caps and instructor history.",
+              },
+              {
+                label: "Model:",
+                detail:
+                  "Quantile regression, because what a bidder actually needs is the 80th percentile outcome, not the mean.",
+              },
+              {
+                label: "Honesty about limits:",
+                detail:
+                  "New electives and new instructors have no history, and the tool says so rather than inventing a confident number.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Outcome",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Roughly 200 classmates used it during the last bidding round. Predictions landed within the stated interval about 85% of the time. The failures were concentrated exactly where I expected: brand-new courses, where the honest answer is that nobody knows.",
+          },
+        ],
+      },
+      {
+        title: "Links",
+        blocks: [
+          {
+            type: "link",
+            label: "View on GitHub",
+            href: "https://github.com/priyavenkatesan/bid-signal",
           },
         ],
       },

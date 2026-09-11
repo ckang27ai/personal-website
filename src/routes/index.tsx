@@ -2,14 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Eyebrow } from "@/components/Eyebrow";
 import { outlineButton, primaryButton } from "@/lib/buttons";
 import { SITE_NAME } from "@/lib/site";
-import { Mail, Linkedin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowRight } from "lucide-react";
 import headshot from "@/assets/headshot.webp";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const emailHref = "mailto:you@example.com";
+const emailHref = "mailto:priyav@mit.edu";
 
 // Links shown under "Connect". Icons come from lucide-react (https://lucide.dev/icons).
 const contacts = [
@@ -17,7 +17,13 @@ const contacts = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/your-profile/",
+    href: "https://www.linkedin.com/in/priyavenkatesan/",
+    external: true,
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/priyavenkatesan",
     external: true,
   },
 ];
@@ -33,10 +39,11 @@ function HomePage() {
             {SITE_NAME}
           </h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            I'm a student at Your University studying Computer Science and Business. I like building
-            products that solve real problems, and this site is where I share my projects,
-            experience, and what I'm learning. Replace this paragraph with a short introduction
-            about yourself.
+            I'm a second-year MBA candidate at MIT Sloan, concentrating in Entrepreneurship &amp;
+            Innovation. I spent five years in supply chain and operations before coming to
+            Cambridge, and I'm now focused on climate technology: the unglamorous logistics of
+            decarbonization, and the software that makes it tractable. This site collects the things
+            I've built along the way.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/projects" className={primaryButton}>

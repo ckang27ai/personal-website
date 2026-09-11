@@ -1,13 +1,13 @@
 // After your first Vercel deploy, replace SITE_URL with your site's address (and update it again
 // if you add a custom domain). It's used for absolute URLs in social previews, robots.txt, and
 // the sitemap.
-export const SITE_URL = "https://your-site.vercel.app";
-export const SITE_NAME = "Your Name";
+export const SITE_URL = "https://priya-venkatesan.vercel.app";
+export const SITE_NAME = "Priya Venkatesan";
 const SITE_DESCRIPTION =
-  "Student and builder sharing my projects, experience, and what I'm learning along the way.";
+  "MIT Sloan MBA candidate working at the intersection of climate technology and operations. Former supply chain analyst turned product builder.";
 
 // Title and description tags for search results and social previews (Open Graph + Twitter/X).
-// `title` is the page name; the site name is appended ("Resume — Your Name").
+// `title` is the page name; the site name is appended ("Resume — Priya Venkatesan").
 export function pageMeta({
   title,
   description = SITE_DESCRIPTION,

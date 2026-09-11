@@ -15,61 +15,103 @@ export const Route = createFileRoute("/resume")({
 
 const education = [
   {
-    school: "Your University",
-    degree: "Bachelor of Science in Computer Science, Expected May 2027",
-    location: "City, State",
-    dates: "2023 — Present",
+    school: "MIT Sloan School of Management",
+    degree: "Master of Business Administration, Expected May 2027",
+    location: "Cambridge, MA",
+    dates: "2025 — Present",
     notes: [
-      "Relevant coursework: Data Structures, Machine Learning, Product Management, Statistics.",
-      "Activities: Entrepreneurship Club (Treasurer), Hackathon Organizing Team.",
+      "Concentration in Entrepreneurship & Innovation; Sustainability Certificate.",
+      "Coursework: Operations Strategy, Data Models & Decisions, Entrepreneurial Finance, Climate & Energy Ventures, Platform Strategy.",
+      "Co-President, Sloan Sustainability Club; organizing team, MIT Clean Energy Prize.",
+      "Teaching Assistant for Introduction to Operations Management (Fall 2026).",
     ],
   },
   {
-    school: "Previous School",
-    degree: "High School Diploma or Previous Degree",
-    location: "City, State",
-    dates: "2019 — 2023",
-    notes: ["An honor, award, or activity you're proud of."],
+    school: "Georgia Institute of Technology",
+    degree: "B.S. in Industrial & Systems Engineering, Highest Honors",
+    location: "Atlanta, GA",
+    dates: "2016 — 2020",
+    notes: [
+      "Minor in Economics; GPA 3.9/4.0. President's Scholarship recipient.",
+      "Undergraduate research on last-mile routing heuristics with the Supply Chain & Logistics Institute.",
+    ],
   },
 ];
 
 const experience = [
   {
-    role: "Product Intern",
-    company: "Example Company",
+    role: "Product Management Intern",
+    company: "Verdigris Energy",
     // Optional one-line description of the company; delete this line if you don't need it.
-    context: "Series A startup · 50 employees",
-    location: "San Francisco, CA",
+    context: "Series B climate software · 120 employees",
+    location: "Boston, MA",
     dates: "Jun 2026 — Aug 2026",
     bullets: [
-      'Start each bullet with a strong verb and end with a result, e.g. "Launched a signup flow redesign that raised conversion by 15%."',
-      "Quantify impact where you can: users reached, time saved, revenue, or accuracy improved.",
-      "Keep it to 3–5 bullets per role, focusing on what you owned and what changed because of it.",
+      "Shipped a fleet-emissions reporting module to 14 enterprise customers, cutting the time to produce an audit-ready quarterly report from three weeks to two days.",
+      "Ran 27 customer discovery interviews across logistics and facilities teams, and used the findings to kill one roadmap item and reprioritize two others.",
+      "Built the pricing model for a new usage-based tier, projecting $1.4M in incremental ARR; the model was adopted for the FY27 plan.",
+      "Received a full-time return offer.",
     ],
   },
   {
-    role: "Research Assistant",
-    company: "Your University Lab",
-    location: "City, State",
-    dates: "Sep 2024 — May 2026",
+    role: "Operations Manager",
+    company: "Northwind Logistics",
+    context: "Series C freight technology · 400 employees",
+    location: "Atlanta, GA",
+    dates: "Jan 2023 — Jul 2025",
     bullets: [
-      "Built a data pipeline in Python to clean and analyze 10,000+ survey responses.",
-      "Presented findings to faculty and co-authored a paper submitted to a student research conference.",
+      "Owned regional cross-dock operations moving 2,800 shipments per week across six facilities, with a team of 19.",
+      "Redesigned the trailer loading sequence and dock scheduling policy, raising on-time departure from 78% to 94% within two quarters.",
+      "Led the rollout of a new warehouse management system across all six sites, delivered on schedule with under four hours of unplanned downtime.",
+      "Renegotiated three carrier contracts, reducing linehaul cost per mile by 11% while holding service levels flat.",
+    ],
+  },
+  {
+    role: "Supply Chain Analyst → Senior Analyst",
+    company: "Bellweather Manufacturing",
+    location: "Atlanta, GA",
+    dates: "Jul 2020 — Dec 2022",
+    bullets: [
+      "Built the demand forecasting model for a 400-SKU portfolio in Python, improving forecast accuracy by 9 points and cutting safety stock by $2.3M.",
+      "Automated a manual weekly S&OP reporting cycle with SQL and Tableau, saving roughly 15 analyst-hours per week.",
+      "Promoted to Senior Analyst after 18 months, ahead of the standard cycle.",
     ],
   },
 ];
 
 const skillGroups = [
-  { label: "Programming", items: ["Python", "TypeScript", "SQL"] },
-  { label: "Tools", items: ["GitHub", "Figma", "Notion"] },
-  { label: "Data & AI", items: ["Pandas", "Machine Learning", "LLM APIs"] },
+  {
+    label: "Product & Strategy",
+    items: ["Customer Discovery", "Roadmapping", "Market Sizing", "Go-to-Market", "Pricing"],
+  },
+  {
+    label: "Data & Analytics",
+    items: ["Python", "SQL", "pandas", "Tableau", "Excel Modeling", "A/B Testing"],
+  },
+  {
+    label: "Operations",
+    items: [
+      "S&OP",
+      "Network Optimization",
+      "Lean Six Sigma",
+      "Supplier Negotiation",
+      "Forecasting",
+    ],
+  },
+  { label: "Tools", items: ["Figma", "Jira", "dbt", "Notion", "Git"] },
 ];
 
-const certifications = ["Example Certification (Issuer, Year)"];
+const certifications = [
+  "Lean Six Sigma Green Belt (ASQ, 2021)",
+  "Certified Supply Chain Professional, CSCP (ASCM, 2022)",
+  "Google Project Management Certificate (2023)",
+];
 
 const interests = [
-  "A hobby or interest that shows your personality.",
-  "Another interest, like a sport, music, volunteering, or a team you follow.",
+  "Long-distance running; finished the 2026 Boston Marathon in 3:41.",
+  "Carnatic violin, which I have played since I was seven and still practice badly.",
+  "Volunteer route planner for a Cambridge food rescue nonprofit.",
+  "Perpetually attempting to keep a sourdough starter alive.",
 ];
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
